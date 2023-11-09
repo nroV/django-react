@@ -9,11 +9,11 @@ function MyNavBar() {
     <Navbar expand="lg" className="bg-body-tertiary p-3">
       <Container>
         <Navbar.Brand href="/"><FaPagelines/> Create Product</Navbar.Brand>
+        <h1>welcome to my shop</h1>
 
 
       <div className="languague-picker">
         <NavLink to='/allproducts' className='nav-link'>
-          <h1>hello</h1>
           <button className="btn btn-secondary">View Product</button>
         </NavLink>
       </div>
