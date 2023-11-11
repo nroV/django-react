@@ -15,9 +15,9 @@ function App() {
     <BigRouter>
       <MyNavBar/>
       <Routes>
-        <Route path='/allproducts' element={<AllProducts/>} />
-        <Route path='/allproducts/:id' element={<ViewsProduct/>} />
-        <Route path='/' index element={<NewProducts/>} />
+        <Route path='/' index element={<AllProducts/>} />
+        <Route path='/:id' element={<ViewsProduct/>} />
+        <Route path='form' element={<NewProducts/>} />
       </Routes>
     </BigRouter>
   );

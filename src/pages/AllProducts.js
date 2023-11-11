@@ -26,7 +26,7 @@ const AllProducts = () => {
 
 
   return (
-    <div className="container">
+    <div className="container" >
         {
             loading ? (
                     <div className="loading d-flex justify-content-center align-items-center">
