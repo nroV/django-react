@@ -69,114 +69,122 @@ className="container-fluid sticky-top p-0" style={{
 
   
 
-      <NavTop />
-      <div className="container-fluid"  style={{
-          backgroundColor: "black",
-        }}>
-      <Container className="container-fluid"       style={{
-          backgroundColor: "black",
-        }}>
-        <nav 
-          class="navbar navbar-expand-lg navbar-dark sticky-top"
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <NavLink 
-          class="bar navlink text-white fw-normal fs-6 text-decoration-none" 
+// <<<<<<< vorn_third
+//       <NavTop />
+//       <div className="container-fluid"  style={{
+//           backgroundColor: "black",
+//         }}>
+//       <Container className="container-fluid"       style={{
+//           backgroundColor: "black",
+//         }}>
+//         <nav 
+//           class="navbar navbar-expand-lg navbar-dark sticky-top"
+//           style={{
+//             backgroundColor: "black",
+//           }}
+//         >
+//           <NavLink 
+//           class="bar navlink text-white fw-normal fs-6 text-decoration-none" 
 
-          style={{ 
-            textDecoration:"none",
-            listStyle:"none"
-           }}
+//           style={{ 
+//             textDecoration:"none",
+//             listStyle:"none"
+//            }}
           
           
-          to={'/'}>
-          <li class="nav-item text-white">
-        <img
-        src="/logo-white.png"
-        alt=""
-        srcset=""
-        className=""
-        style={{
-          width: "190px",
-          height: "70px",
-          objectFit: "cover",
-        }}
-      />
-          </li>
-          </NavLink>
-          <button
-            class="navbar-toggler justify-content-between"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+//           to={'/'}>
+//           <li class="nav-item text-white">
+//         <img
+//         src="/logo-white.png"
+//         alt=""
+//         srcset=""
+//         className=""
+//         style={{
+//           width: "190px",
+//           height: "70px",
+//           objectFit: "cover",
+//         }}
+//       />
+//           </li>
+//           </NavLink>
+//           <button
+//             class="navbar-toggler justify-content-between"
+//             type="button"
+//             data-toggle="collapse"
+//             data-target="#navbarNavAltMarkup"
+//             aria-controls="navbarNavAltMarkup"
+//             aria-expanded="false"
+//             aria-label="Toggle navigation"
+//           >
+//             <span class="navbar-toggler-icon"></span>
+//           </button>
+//           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+//             <div class="navbar-nav">
      
 
           
-    <li class="nav-item text-white mx-2">
-      <NavLink
-      className='bar'
+//     <li class="nav-item text-white mx-2">
+//       <NavLink
+//       className='bar'
       
       
-      aria-current="page" to ={'/'}
+//       aria-current="page" to ={'/'}
       
  
-      >
-        Home
-      </NavLink>
-    </li>
-    <li class="nav-item text-white mx-2">
-      <NavLink           className='bar'to ={'/form'}>
-        Create
-      </NavLink>
-    </li>
-    <li class="nav-item text-white mx-2">
-      <NavLink           className='bar' to ={'/product'}>
-        All Products
-      </NavLink>
-    </li>
+//       >
+//         Home
+//       </NavLink>
+//     </li>
+//     <li class="nav-item text-white mx-2">
+//       <NavLink           className='bar'to ={'/form'}>
+//         Create
+//       </NavLink>
+//     </li>
+//     <li class="nav-item text-white mx-2">
+//       <NavLink           className='bar' to ={'/product'}>
+//         All Products
+//       </NavLink>
+//     </li>
 
 
-        {
-          isauth === false ?
+//         {
+//           isauth === false ?
 
-          <>
+//           <>
           
                       
-    <li class="nav-item text-white mx-2">
-      <NavLink
-      className='bar'
+//     <li class="nav-item text-white mx-2">
+//       <NavLink
+//       className='bar'
 
 
-      to ={'/login'}>
-        Login
-      </NavLink>
-    </li>
-    <li class="nav-item text-white mx-2">
-      <NavLink 
-      className='bar'
+//       to ={'/login'}>
+//         Login
+//       </NavLink>
+//     </li>
+//     <li class="nav-item text-white mx-2">
+//       <NavLink 
+//       className='bar'
 
 
-      to ={'/register'}>
-        Register
-      </NavLink>
-    </li>
+//       to ={'/register'}>
+//         Register
+//       </NavLink>
+//     </li>
 
-          </>
-          :
-          <li class="nav-item text-white mx-2">
-          <NavLink 
-              className='bar'
-          onClick={(e)=>handlelogout(e)}
+//           </>
+//           :
+//           <li class="nav-item text-white mx-2">
+//           <NavLink 
+//               className='bar'
+//           onClick={(e)=>handlelogout(e)}
+// =======
+//       <div className="languague-picker">
+//         <NavLink to='/allproducts' className='nav-link'>
+//           <button className="btn btn-secondary">View Product</button>
+//         </NavLink>
+//       </div>
+// >>>>>>> main
       
           >
           Logout
