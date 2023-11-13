@@ -1,0 +1,5 @@
+/* Assuming a class named 'custom-link' */
+.customlink {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Keep the default color */
+  }

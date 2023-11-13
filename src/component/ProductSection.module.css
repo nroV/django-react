@@ -1,0 +1,41 @@
+
+.cardflip{
+    position: relative;
+    width:100%;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+
+}
+
+.cardflip:hover {
+    transition: 800ms ease-in-out;
+
+    filter:brightness(0.35)
+}
+
+
+.nothovercard {
+    transition: 800ms ease-in-out;
+    filter:brightness(0.35)
+}
+.whenhover {
+
+}
+.inner {
+    position: absolute;
+    top: 150px;
+
+
+
+    right: 0px;
+  
+}
+
+
+.notinner {
+    display: none;
+}
