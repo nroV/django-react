@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loginuser } from "../service/action/Auth";
 import { LoginUrl } from "../service/constants/ApiUrl";
 import { RotatingLines } from "react-loader-spinner";
+import ErrorAuth from "../component/ErrorAuth";
 export default function Login({ isauth, setAuth }) {
   const [isloading, setLoading] = useState(false);
   const [iserror, setError] = useState(false);
-
+  const [errormessage, setErrorMessage] = useState();
   const [token, setToken] = useState(false);
 
   const navigation = useNavigate();
@@ -35,13 +36,24 @@ export default function Login({ isauth, setAuth }) {
 
     try {
       const response = await Loginuser(LoginUrl, payload);
+      console.log(response);
+      console.log(response.status)
 
-      console.log(response.status);
+      if (!response.ok) {
+        const res = await response.json();
+        console.log(res);
+        setErrorMessage(res);
+        setError(true);
+      }
 
+      if(response.status === 400) {
+        const res = await response.json();
+        setErrorMessage(res)
+      }
       if (response.ok) {
         const res = await response.json();
 
-        // console.log(res)
+        console.log(res);
 
         setToken(res.token);
         localStorage.setItem("token", res.token);
@@ -58,6 +70,7 @@ export default function Login({ isauth, setAuth }) {
   }
 
   console.log(token);
+  console.log(errormessage);
   return (
     <main className="container">
       <div className="row justify-content-center">
@@ -72,10 +85,19 @@ export default function Login({ isauth, setAuth }) {
                   <label for="exampleInputEmail1" class="form-label">
                     Email address
                   </label>
+                  {iserror && (
+                    <message>
+                      <p className="text-danger">
+                 
+                        {errormessage.email} 
+                      </p>
+                    </message>
+                  )}
                   <input
                     type="email"
                     name="email"
                     class="form-control"
+                    f
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     onChange={(e) => handlechangevalue(e)}
@@ -88,6 +110,14 @@ export default function Login({ isauth, setAuth }) {
                   <label for="exampleInputPassword1" class="form-label">
                     Password
                   </label>
+                  {iserror && (
+                    <message>
+                      <p className="text-danger">
+                 
+                        {errormessage.password} 
+                      </p>
+                    </message>
+                  )}
                   <input
                     type="password"
                     name="password"
@@ -119,6 +149,15 @@ export default function Login({ isauth, setAuth }) {
                     />
                   </div>
                 )}
+
+                {
+
+
+                    iserror && <>
+                    
+                  <ErrorAuth      message=  {errormessage.message}/>
+                    </>
+                }
 
                 {!isloading && (
                   <button type="submit" class="btn btn-dark w-100">

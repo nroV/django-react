@@ -13,9 +13,7 @@ export default function CustomSearch({placeholder,width,my = 5,
   useEffect(()=>{
     searchinput.current.focus()
 
-    return ()=>{
-      setSearch("")
-    }
+
 
   },[])
   return (

@@ -22,15 +22,6 @@ export default function MainSection({pt,isloading,products,iserror,handleserach,
     </div>
   }
 
-  // if(!length) {
-  //     return (<>
-      
-      
-  //       <center>
-  //         <p className="lead">Sorry we couldn't find any product</p>
-  //       </center>
-  //     </>)
-  // }
 
 
   return (
