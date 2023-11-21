@@ -11,7 +11,7 @@ function ProductCard(props) {
         <Card.Title style={{ color:'orange', fontWeight:'bold' }}>${props.product.price}</Card.Title>
         <Card.Text>{props.product.description}</Card.Text>
         
-        <Link to={`${props.product.id}`}>
+        <Link to={`product/${props.product.id}`}>
           <Button variant="primary">View Product</Button>
         </Link>
       </Card.Body>
