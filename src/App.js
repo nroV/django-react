@@ -19,15 +19,22 @@ import MyFooter from "./component/MyFooter";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Layout from "./pages/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductPart from "./pages/ProductPart";
 import NewArrivalSection from "./component/NewArrivalSection";
 import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
+import Createcategory from "./component/Createcategory";
 function App() {
   const { products, isloading, iserror } = useProduct();
   const categories = products.map((product) => product.category_id);
   const [isauth,setAuth] = useState(false)
+
+  useEffect(()=>{
+
+  },[])
+
+  console.log(products)
   return (
     <BigRouter>
       {!isloading && <MyNavBar
@@ -81,7 +88,7 @@ function App() {
 
                     <CategorySection
                       products={products}
-                      categories={categories}
+          
                       isloading={isloading}
                       iserror={iserror}
                     />
@@ -105,7 +112,11 @@ function App() {
         </Route>
         <Route path="/:id" element={<ViewsProduct />} />
         <Route path="form" element={<NewProducts />} />
+        <Route path="form/category" element={<Createcategory />} />
 
+
+  
+        <Route path="form/category/:id" element={<Createcategory />} />
         <Route path="login" element={
         <Login
          isauth= {isauth} 
