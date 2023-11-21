@@ -19,6 +19,13 @@ export default function Createcategory() {
     })
     const navigate = useNavigate();
     const {id} = useParams()
+
+    function checktoken(token) {
+      if(token !== null || token !== '') {
+        return true
+      }
+      return false
+    }
     const handleClear = () =>{
         setImg(
             ""
@@ -112,6 +119,13 @@ export default function Createcategory() {
           },
           body: JSON.stringify(payload)
         };
+
+        if(checktoken(localStorage.getItem('token')) == false){
+          console.log("No token")
+
+          return
+
+        }
         fetch(CategoryUrlCreate,requestOptions)
         .then(response=>response.json())
         .then(res => {
