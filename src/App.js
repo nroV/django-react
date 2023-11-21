@@ -24,17 +24,16 @@ import ProductPart from "./pages/ProductPart";
 import NewArrivalSection from "./component/NewArrivalSection";
 import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
+
+
 function App() {
   const { products, isloading, iserror } = useProduct();
   const categories = products.map((product) => product.category_id);
-  const [isauth,setAuth] = useState(false)
+  const [isauth, setAuth] = useState(false);
+  
   return (
     <BigRouter>
-      {!isloading && <MyNavBar
-      
-      isauth= {isauth} 
-      setAuth={setAuth}
-      />}
+      {!isloading && <MyNavBar isauth={isauth} setAuth={setAuth} />}
 
       <Routes>
         <Route>
@@ -42,30 +41,24 @@ function App() {
             index
             element={
               <Layout isloading={isloading}>
-
-
-                {
-                  isloading && 
-       <section className='container
-        d-flex justify-content-center align-items-center'
-        
-        style={{ 
-          height:' 100vh'
-
-         }}
-        >
-
-             
-     <RotatingLines
-    strokeColor="#4fa94d"
-    strokeWidth="5"
-    animationDuration="0.75"
-    color="#4fa94d"
-    width="136"
-    visible={true}
-    />
-          </section>
-                }
+                {isloading && (
+                  <section
+                    className="container
+        d-flex justify-content-center align-items-center"
+                    style={{
+                      height: " 100vh",
+                    }}
+                  >
+                    <RotatingLines
+                      strokeColor="#4fa94d"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      color="#4fa94d"
+                      width="136"
+                      visible={true}
+                    />
+                  </section>
+                )}
 
                 {!isloading && (
                   <>
@@ -90,10 +83,7 @@ function App() {
               </Layout>
             }
           />
-             <Route
-            path="/logout"
-            element={<Navigate to="/" />}
-          />
+          <Route path="/logout" element={<Navigate to="/" />} />
           <Route
             path="/product"
             element={<ProductPart categories={categories} />}
@@ -103,49 +93,50 @@ function App() {
             element={<ProductPart categories={categories} />}
           />
         </Route>
-        <Route path="/:id" element={<ViewsProduct />} />
+        <Route path="product/:id" element={<ViewsProduct />} />
         <Route path="form" element={<NewProducts />} />
 
-        <Route path="login" element={
-        <Login
-         isauth= {isauth} 
-        setAuth = {setAuth}/>} />
-        <Route path="register" element={<Register       isauth= {isauth} 
-      setAuth={setAuth}/>} />
+        <Route
+          path="login"
+          element={<Login isauth={isauth} setAuth={setAuth} />}
+        />
+        <Route
+          path="register"
+          element={<Register isauth={isauth} setAuth={setAuth} />}
+        />
       </Routes>
 
-      {!isloading &&     
-      
-      <MyFooter>
-        <div
-          class="container-fluid"
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <footer class="py-3 my-4 mb-0">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3 text-white">
-              <li class="nav-item text-white fw-bold">
-                <Link to={""} class="nav-link px-2 text-white">
-                  Home
-                </Link>
-              </li>
-              <li class="nav-item text-white fw-bold">
-                <Link to={""} class="nav-link px-2 text-white">
-                  Create
-                </Link>
-              </li>
-              <li class="nav-item text-white fw-bold">
-                <Link to={""} class="nav-link px-2 text-white">
-                  Filter
-                </Link>
-              </li>
-            </ul>
-            <p class="text-center text-white fw-bold">© 2023 Tenh Ey, Inc</p>
-          </footer>
-        </div>
-      </MyFooter>}
-
+      {!isloading && (
+        <MyFooter>
+          <div
+            class="container-fluid"
+            style={{
+              backgroundColor: "black",
+            }}
+          >
+            <footer class="py-3 my-4 mb-0">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3 text-white">
+                <li class="nav-item text-white fw-bold">
+                  <Link to={""} class="nav-link px-2 text-white">
+                    Home
+                  </Link>
+                </li>
+                <li class="nav-item text-white fw-bold">
+                  <Link to={""} class="nav-link px-2 text-white">
+                    Create
+                  </Link>
+                </li>
+                <li class="nav-item text-white fw-bold">
+                  <Link to={""} class="nav-link px-2 text-white">
+                    Filter
+                  </Link>
+                </li>
+              </ul>
+              <p class="text-center text-white fw-bold">© 2023 Tenh Ey, Inc</p>
+            </footer>
+          </div>
+        </MyFooter>
+      )}
     </BigRouter>
   );
 }
