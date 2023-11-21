@@ -24,6 +24,7 @@ import ProductPart from "./pages/ProductPart";
 import NewArrivalSection from "./component/NewArrivalSection";
 import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
+import Createcategory from "./component/Createcategory"
 function App() {
   const { products, isloading, iserror } = useProduct();
 
