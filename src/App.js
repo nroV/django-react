@@ -120,8 +120,10 @@ function App() {
             path="/logout"
             element={<Navigate to="/" />}
           />
+          <Route path="product/:id" element={<ViewsProduct />} />
           <Route
             path="/product"
+            
             element={<ProductPart categories={categories} />}
           />
           <Route

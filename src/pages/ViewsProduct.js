@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react'
 import { useState,} from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {RotatingLines} from 'react-loader-spinner'
 import { DeleteProduct } from '../service/constants/ApiUrl'
 import { DELETE_PRODUCT } from '../service/productService'
@@ -60,7 +60,29 @@ const ViewsProduct = (onUpdate) => {
     const handleUpdate = () =>{
       onUpdate(product)
     }
- 
+
+    const usenavigate = useNavigate()
+    const handleDelete = (id) => {  
+      console.log(id)  
+      const product ={
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+      }
+      fetch(`${DeleteProduct}/${id}`, product)
+      .then(response => {
+        if (response.ok) {
+          usenavigate("/")
+          return response.json()
+        } else {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      })
+      .then(res => console.log("Delete Product:", res))
+      .catch(err => console.log("Delete error:", err))      
+    }; 
 
   return (
     <div className="container">
@@ -113,7 +135,7 @@ const ViewsProduct = (onUpdate) => {
                   <button className="btn btn-danger mt-4 w-50"  >Check Out</button>
                   <button className="btn btn-success ms-4 mt-4 w-50" >Add Card</button>
                   <button className="btn btn-primary ms-4 mt-4 w-50"  onClick={handleUpdate}>Edit</button>
-                  <button className="btn btn-warning ms-4 mt-4 w-50">Delete</button>
+                  <button className="btn btn-warning ms-4 mt-4 w-50" onClick={()=>handleDelete(id)}>Delete</button>
                 </div>
               </div>
             </div>
