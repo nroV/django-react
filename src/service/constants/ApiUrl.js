@@ -22,6 +22,7 @@
     
     export const viewProductID = "http://vorn.ponlue.bio:5046/api/product/"
     export const CreateProduct ="http://vorn.ponlue.bio:5046/api/product/create"
+    export const updateproducturl ="http://vorn.ponlue.bio:5046/api/product/"
 // <<<<<<< branch
     export const DeleteProduct = "http://vorn.ponlue.bio:5046/api/product"
 // =======

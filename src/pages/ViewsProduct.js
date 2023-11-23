@@ -1,12 +1,13 @@
 
 import React, { useEffect } from 'react'
 import { useState,} from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {RotatingLines} from 'react-loader-spinner'
 import { DeleteProduct } from '../service/constants/ApiUrl'
 import { DELETE_PRODUCT } from '../service/productService'
+import { useProduct } from '../customhook/useProduct'
 
-const ViewsProduct = (onUpdate) => {
+const ViewsProduct = () => {
     const [product,setProduct] = useState({})
     const [image_id,setImages_id] =useState([])
     const {id} = useParams()
@@ -14,8 +15,8 @@ const ViewsProduct = (onUpdate) => {
     const [quantity, setQuantity] =useState(1);
     const [loading, setLoading] = useState(true)
     const [data,setData] = useState([])
-
-
+  const [response,setResponse]= useState()
+    const  {products,isloading,iserror } =  useProduct({search:'',sortby:null,action:response})    
     useEffect(()=>{
         fetch(`http://vorn.ponlue.bio:5046/api/product/${id}`)
         .then(response=>response.json())
@@ -33,6 +34,7 @@ const ViewsProduct = (onUpdate) => {
         .catch(err=>console.log("Error: ",err))
     },[])
 
+    const navigate = useNavigate( )
 
     const handleClick =(index)=>{
       console.log("index",index);
@@ -58,12 +60,13 @@ const ViewsProduct = (onUpdate) => {
     console.log("pr", product)
 
     const handleUpdate = () =>{
-      onUpdate(product)
+      // onUpdate(product)
     }
 
     const usenavigate = useNavigate()
     const handleDelete = (id) => {  
       console.log(id)  
+
       const product ={
         method: 'DELETE',
         headers: {
@@ -71,17 +74,34 @@ const ViewsProduct = (onUpdate) => {
           'Authorization': `Token ${localStorage.getItem('token')}`
         }
       }
-      fetch(`${DeleteProduct}/${id}`, product)
-      .then(response => {
-        if (response.ok) {
-          usenavigate("/")
-          return response.json()
-        } else {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-      })
-      .then(res => console.log("Delete Product:", res))
-      .catch(err => console.log("Delete error:", err))      
+      if(window.confirm("Do you want to delete this product?") == true) {
+        fetch(`${DeleteProduct}/${id}`, product)
+        .then(response => {
+          console.log(response.status)
+          console.log(response)
+
+   
+          if (response.ok) {
+   
+      
+            return response.json()
+          } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+        })
+        .then(res =>  {
+       
+          return res
+        })
+        .catch(err => console.log(err))   
+        .finally(()=>{
+          // navigate('/')
+        })   
+      }
+      else{
+
+      }
+    
     }; 
 
   return (
@@ -134,7 +154,7 @@ const ViewsProduct = (onUpdate) => {
                 <div className="AllButton d-flex justify-content-center " > 
                   <button className="btn btn-danger mt-4 w-50"  >Check Out</button>
                   <button className="btn btn-success ms-4 mt-4 w-50" >Add Card</button>
-                  <button className="btn btn-primary ms-4 mt-4 w-50"  onClick={handleUpdate}>Edit</button>
+                  <Link className="btn btn-primary ms-4 mt-4 w-50" to={`/form/${product.id}`}>Edit Product</Link>
                   <button className="btn btn-warning ms-4 mt-4 w-50" onClick={()=>handleDelete(id)}>Delete</button>
                 </div>
               </div>

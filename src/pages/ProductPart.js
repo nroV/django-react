@@ -10,7 +10,8 @@ export default function ProductPart({categories}) {
 
 const [sortby,setSort] = useState()
 const [search,setSearch]= useState("")
-const  {products,isloading,iserror } = useProduct(search,sortby)
+
+const  {products,isloading,iserror } = useProduct({search:search,sortby:sortby})
 
 
 let { id } = useParams(); // Access the value of 'id' from the URL

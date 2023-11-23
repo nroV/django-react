@@ -4,8 +4,8 @@ import { Mainurl ,SortUrl} from '../service/constants/ApiUrl'
 
 
 
-export const useProduct = (search,sortby)=>{
-    if(!search) {
+export const useProduct = ({search,sortby ,action})=>{
+    if(search === undefined) {
       search =''
     }
 
@@ -15,11 +15,15 @@ const [products,setProduct] = useState([])
 let url 
 const [isloading,setLoading]= useState(true)
 const [iserror,setError]= useState(false)
+
+
+
     useEffect(()=>{
+      console.log("USe product called")
         async function fetchingProduct() {
           setLoading(true)
           url = Mainurl +search
-          if(sortby) {
+          if(sortby !== undefined) {
             url = SortUrl+sortby
           }
       
@@ -49,7 +53,7 @@ const [iserror,setError]= useState(false)
         console.log("Clean up Product")
       }
  
-        },[search,sortby])
+        },[search,sortby,action])
         
 
 return  {products,isloading,iserror }

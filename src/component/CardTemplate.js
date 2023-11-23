@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../component/ProductSection.module.css";
 import { Link } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 
 export default function CardTemplate({ lg, product, ismid = false }) {
   const [ishover, setHover] = useState(false);
@@ -15,10 +16,18 @@ export default function CardTemplate({ lg, product, ismid = false }) {
   }, [product]);
   // when product change i want my image to do so
 
-  const img = {
-    ...images[1],
-  };
+  let urllink= images[0]
+  useEffect(()=>{
+      console.log(images)
+  },[images])
 
+
+if(!urllink ) {
+  return <RotatingLines>
+
+
+  </RotatingLines>
+}
   return (
     <>
       <div className={`col-12 col-lg-${lg}`}>
@@ -31,13 +40,18 @@ export default function CardTemplate({ lg, product, ismid = false }) {
           }}
         >
           <card className="header">
-            <img
+            {
+            images && <>
+                   <img
               onMouseOver={() => setHover(true)}
               onMouseLeave={() => setHover((prev) => !prev)}
               className={`${styles.cardflip} ${ishover && styles.nothovercard}`}
-              src={img.files}
+              src={urllink == null ? '' : urllink.files}
               alt=""
             />
+              </>
+            }
+       
             <box
               className={`${ishover === true ? styles.inner : styles.notinner}`}
               style={{

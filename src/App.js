@@ -26,7 +26,10 @@ import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
 import Createcategory from "./component/Createcategory";
 function App() {
-  const { products, isloading, iserror } = useProduct();
+  const [ischange,setChange]= useState()
+  const  {products,isloading,iserror } = useProduct({search:null,sortby:null,action:ischange})
+
+
   const categories = products.map((product) => product.category_id);
   const [isauth,setAuth] = useState(false)
 
@@ -46,7 +49,8 @@ function App() {
       <Routes>
         <Route>
           <Route
-            index
+            path={'/'}
+
             element={
               <Layout isloading={isloading}>
 
@@ -113,7 +117,8 @@ function App() {
           />
         </Route>
         <Route path="/:id" element={<ViewsProduct />} />
-        <Route path="form" element={<NewProducts />} />
+        <Route path="form" element={<NewProducts setChange = {setChange}  />} />
+        <Route path="form/:id" element={<NewProducts setChange = {setChange}  />} />
         <Route path="form/category" element={<Createcategory />} />
 
 
@@ -139,7 +144,7 @@ function App() {
           <footer class="py-3 my-4 mb-0">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3 text-white">
               <li class="nav-item text-white fw-bold">
-                <Link to={""} class="nav-link px-2 text-white">
+                <Link to={"/"} class="nav-link px-2 text-white">
                   Home
                 </Link>
               </li>
