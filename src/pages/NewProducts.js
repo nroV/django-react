@@ -6,6 +6,7 @@ import { FILE_UPLOAD } from '../service/fileService'
 import { ToastContainer,toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import axios, { Axios } from 'axios'
+import { UploadImage } from '../service/constants/ApiUrl'
 
 const NewProducts = () => {
     const [category_id,setCategory_id] = useState("")
@@ -17,6 +18,10 @@ const NewProducts = () => {
     const [img,setImg] =useState("")
     const [selectedImages,setSelectedImages]=useState("")
     const [uploadimg,setUploadImg] = useState()
+    const [payload,setPayLoad]=useState({
+      productname:"",
+      image_id:""
+  })
 
 
     let newProducts={
@@ -78,11 +83,14 @@ const NewProducts = () => {
 
 
       const config = {
-        headers: { Authorization: `Token 3dc3776efd87e46a80f0bb96c39d6231222f784c` }
+        headers: { Authorization: `Token ${localStorage.getItem('token')}` }
       };
       e.preventDefault();
       axios.post("http://vorn.ponlue.bio:5046/api/product/create",newProducts,config)
-      .then((response)=>console.log("create",response.data))
+      .then((response)=>{
+        console.log("create",response.data)
+        setImage(URL.createObjectURL(e.target.files[0]));
+    })
       .catch((error)=>console.log("error",error.response.data))
     }
 
@@ -90,30 +98,37 @@ const NewProducts = () => {
 
     const handleImgChange = (event) => {
       if (event.target.files && event.target.files[0]) {
-        setImg(URL.createObjectURL(event.target.files[0]));
-        // setSelectedImages(event.target.files[0]);
-        const formData = new FormData();
-        formData.append('files',event.target.files[0]);
-        const token = localStorage.getItem("token");
-        axios.post('http://vorn.ponlue.bio:5046/api/image', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Token 3dc3776efd87e46a80f0bb96c39d6231222f784c`
-
-          }
-        }).then(response => {
-          console.log(response);
-          setUploadImg(response)
-          
-              setImage(
-                uploadimg.id
-
-              )
-        }).catch(error => {
-          console.log(error);
-        });
-      }
+        if(event.target.files && event.target.files[0]){
+          let formdata = new FormData()  
+          formdata.append("files", event.target.files[0]);
+          setImg(URL.createObjectURL(event.target.files[0]))
+          console.log(localStorage.getItem('token'))
+          const requestOptions = {
+            method: 'POST',
+            headers: {
+              'Authorization':`Token ${localStorage.getItem('token')}`,             
+            },
+            body: formdata
+          };
+          fetch(UploadImage,requestOptions)
+          .then(response=>response.json())
+          .then(res => 
+            {
+              setImage(res)
+            
+              setPayLoad(prev=>{
+                return {
+                 ...prev,
+                image_id:res.id,
+                }
+              })
+              return res
+            }
+          )
+          .catch(err=>console.error(err))
+        }
     }
+  }
     
     const handleClear = () =>{
       setImage("")
@@ -125,7 +140,7 @@ const NewProducts = () => {
     }
 
     console.log("new product",newProducts)
- 
+  let buttonStatus = name && stockqty && price && category_id && description && images ? false :true
 
   return (
     <div className="container ">
@@ -171,7 +186,7 @@ const NewProducts = () => {
               <input type="text" className='form-control' placeholder='description'  onChange={(e)=>setDescription(e.target.value)}/>
 
               <div className="AllButton d-flex justify-content-center mt-5">
-                <button className="btn btn-warning " onClick={handleCreateProduct}>Create Product</button>
+                <button className="btn btn-warning " disabled={buttonStatus} onClick={handleCreateProduct}>Create Product</button>
                 <button className="btn btn-danger ms-5 " onClick={handleClear}>Clear</button>
               </div>
               <ToastContainer/>
