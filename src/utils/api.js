@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const api = axios.create({
-    baseURL:'https://api.escuelajs.co/api/v1'
+    baseURL:"http://vorn.ponlue.bio:5046/api/"
 })
 
 export default api;

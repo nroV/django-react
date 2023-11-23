@@ -24,10 +24,29 @@ import ProductPart from "./pages/ProductPart";
 import NewArrivalSection from "./component/NewArrivalSection";
 import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
-import Createcategory from "./component/Createcategory";
+// <<<<<<< kdmv
+// // import Createcategory from "./component/Createcategory";
+// =======
+// import Createcategory from "./component/Createcategory"
+// >>>>>>> main
 function App() {
   const { products, isloading, iserror } = useProduct();
-  const categories = products.map((product) => product.category_id);
+
+  
+  const categories = products.map((product,index,array) => {
+
+    const prevIndex = index - 1;
+    const isSameCategory = prevIndex >= 0 && array[prevIndex].category_id.id  == product.category_id.id;
+
+    return isSameCategory ? null : product.category_id;
+
+
+ 
+  });
+
+
+  console.log(categories);
+
   const [isauth,setAuth] = useState(false)
 
   useEffect(()=>{
