@@ -19,16 +19,6 @@ export default function Createcategory() {
     })
     const navigate = useNavigate();
     const {id} = useParams()
-// <<<<<<< kdmv
-// =======
-
-//     function checktoken(token) {
-//       if(token !== null || token !== '') {
-//         return true
-//       }
-//       return false
-//     }
-// >>>>>>> main
     const handleClear = () =>{
         setImg(
             ""
@@ -84,15 +74,12 @@ export default function Createcategory() {
  
       const ondelete = (id )=>{
         console.log(id)
-// <<<<<<< kdmv
 
-//        let answer = window.confirm("Press a button!\nEither OK or Cancel.");
+       let answer = window.confirm("Press a button!\nEither OK or Cancel.");
 
-//        if(!answer) {
-//         return 
-//        }
-// =======
-// >>>>>>> main
+       if(!answer) {
+        return 
+       }
         const requestOptions = {
           method: 'DELETE',
           headers: {
@@ -105,21 +92,16 @@ export default function Createcategory() {
         }
         fetch(`${CategoryUrl}/${id}`,requestOptions)
         .then(response=>{
-// <<<<<<< kdmv
-//           if(!response.ok) {
-//             alert("Please Sign Up or Login first to get token")
-//             return
-//           }
-//           else {
-//             usenavigate("/")
-//             return response.json()
-//           }
+          if(!response.ok) {
+            alert("Please Sign Up or Login first to get token")
+            return
+          }
+          else {
+            usenavigate("/")
+            return response.json()
+          }
 
   
-// =======
-//           usenavigate("/")
-//           return response.json()
-// >>>>>>> main
         })
         .then(res => {
     
@@ -144,43 +126,28 @@ export default function Createcategory() {
           },
           body: JSON.stringify(payload)
         };
-// <<<<<<< kdmv
-//         fetch(CategoryUrlCreate,requestOptions)
-//         .then(response=>{
-//           if(!response.ok) {
-//             alert("Please Sign Up or Login first to get token")
-//             return
-//           }
-//           else {
-//             return response.json()
-//           }
+        fetch(CategoryUrlCreate,requestOptions)
+        .then(response=>{
+          if(!response.ok) {
+            alert("Please Sign Up or Login first to get token")
+            return
+          }
+          else {
+            return response.json()
+          }
 
 
 
-//         })
-//         .then(res => {
-//           console.log(res)
-//           if(res.detail){
+        })
+        .then(res => {
+          console.log(res)
+          if(res.detail){
            
-//           }
-//           else {
-//             navigate("/")
-//           }
+          }
+          else {
+            navigate("/")
+          }
    
-// =======
-
-//         if(checktoken(localStorage.getItem('token')) == false){
-//           console.log("No token")
-
-//           return
-
-//         }
-//         fetch(CategoryUrlCreate,requestOptions)
-//         .then(response=>response.json())
-//         .then(res => {
-//           console.log(res)
-//           navigate("/")
-// >>>>>>> main
           return res 
         } )
         .catch(err=>console.error(err))
@@ -199,31 +166,24 @@ export default function Createcategory() {
           },
           body: JSON.stringify(payload)
         };
-//         fetch(`${CategoryUrl}/${id}`,requestOptions)
-// <<<<<<< kdmv
-//         .then(response=>{
+        fetch(`${CategoryUrl}/${id}`,requestOptions)
+        .then(response=>{
 
-//           if(!response.ok) {
-//             alert("Please Sign Up or Login first to get token")
-//             return
-//           }
-//           else {
+          if(!response.ok) {
+            alert("Please Sign Up or Login first to get token")
+            return
+          }
+          else {
   
-//             return response.json()
-//           }      
-//         })
-//         .then(res => {
-//           console.log(res)
-//           if(!res.detail) {
-//             navigate("/")
-//           }
+            return response.json()
+          }      
+        })
+        .then(res => {
+          console.log(res)
+          if(!res.detail) {
+            navigate("/")
+          }
    
-// =======
-//         .then(response=>response.json())
-//         .then(res => {
-//           console.log(res)
-//           navigate("/")
-// >>>>>>> main
           return res 
         } )
         .catch(err=>console.error(err))
