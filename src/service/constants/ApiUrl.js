@@ -23,7 +23,7 @@
     export const viewProductID = "http://vorn.ponlue.bio:5046/api/product/"
     export const CreateProduct ="http://vorn.ponlue.bio:5046/api/product/create"
 // <<<<<<< branch
-//     export const DeleteProduct = "http://vorn.ponlue.bio:5046/api/product"
+    export const DeleteProduct = "http://vorn.ponlue.bio:5046/api/product"
 // =======
 //     export const DeleteProduct = "http://vorn.ponlue.bio:5046/api/product/"
 // // >>>>>>> main
