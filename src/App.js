@@ -24,7 +24,11 @@ import ProductPart from "./pages/ProductPart";
 import NewArrivalSection from "./component/NewArrivalSection";
 import BrandSection from "./component/BrandSection";
 import CategorySection from "./component/CategorySection";
-import Createcategory from "./component/Createcategory"
+// <<<<<<< kdmv
+// // import Createcategory from "./component/Createcategory";
+// =======
+// import Createcategory from "./component/Createcategory"
+// >>>>>>> main
 function App() {
   const { products, isloading, iserror } = useProduct();
 
@@ -103,7 +107,7 @@ function App() {
 
                     <CategorySection
                       products={products}
-                      categories={categories}
+          
                       isloading={isloading}
                       iserror={iserror}
                     />
