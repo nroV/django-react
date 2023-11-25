@@ -9,6 +9,7 @@ const ViewsProduct = () => {
     const [title,setTitle] = useState("")
     const [price,setPrice] = useState("")
     const [description,setDescription] = useState("")
+    const [image_id,setImages_id] = useState([])
     const {id} = useParams()
 
 
