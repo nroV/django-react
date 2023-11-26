@@ -26,12 +26,15 @@ const ViewsProduct = () => {
             setImages_id(res.image_id)
                     return res
                   })
-                  setLoading(false)
+                
 
- 
+             
 
         })
         .catch(err=>console.log("Error: ",err))
+        .finally(()=>{
+          setLoading(false)
+        })
     },[])
 
     const navigate = useNavigate( )
